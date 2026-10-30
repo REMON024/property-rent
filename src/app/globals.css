@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens: RGB triplets so Tailwind opacity modifiers work (bg-brand/20). */
+:root {
+  --font-display: "Archivo"; --font-body: "Hind Siliguri";
+  --bg: 243 245 242; --surface: 255 255 255; --ink: 21 35 29; --muted: 86 100 93; --line: 221 227 222;
+  --brand: 15 107 79; --brandink: 255 255 255; --brandsoft: 227 240 234;
+  --sign: 255 210 63; --signink: 42 29 0;
+  --warn: 138 59 18; --warnsoft: 251 231 220; --info: 51 70 107; --infosoft: 228 233 243;
+  --hero: 21 35 29; --heroink: 255 255 255;
+  --map: 228 233 225; --road: 255 255 255; --park: 207 225 216;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: 15 22 19; --surface: 24 34 29; --ink: 231 238 233; --muted: 154 169 161; --line: 42 56 50;
+    --brand: 79 197 154; --brandink: 6 21 15; --brandsoft: 22 52 41;
+    --sign: 242 194 48; --signink: 34 24 0;
+    --warn: 240 138 93; --warnsoft: 60 32 22; --info: 150 175 230; --infosoft: 30 38 58;
+    --hero: 10 16 13; --heroink: 231 238 233;
+    --map: 30 42 36; --road: 48 62 55; --park: 32 66 52;
+    color-scheme: dark;
+  }
+}
+
+body { @apply bg-bg text-ink font-sans antialiased; }
+:focus-visible { outline: 2px solid rgb(var(--brand)); outline-offset: 2px; }
+.tabnum { font-variant-numeric: tabular-nums; }
+
+@layer components {
+  .gutter { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .card { @apply bg-surface border border-line rounded-2xl; }
+  .btn { @apply inline-flex items-center justify-center h-11 px-4 rounded-xl font-semibold text-[15px] transition disabled:opacity-50; }
+  .btn-primary { @apply btn bg-brand text-brandink hover:opacity-90; }
+  .btn-ghost { @apply btn border border-line bg-surface text-ink hover:border-ink/40; }
+  .btn-danger { @apply btn border border-line bg-surface text-warn hover:border-warn/50; }
+  .field { @apply h-11 w-full rounded-xl border border-line bg-surface text-ink px-3 text-[15px]; }
+  .label { @apply flex flex-col gap-1.5 text-[13px] font-semibold text-muted; }
+  .h-section { @apply font-display font-bold text-lg m-0; }
+}
